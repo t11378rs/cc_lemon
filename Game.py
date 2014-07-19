@@ -18,8 +18,8 @@ class Game:
 		self.p1 = p1
 		self.p2 = CommonPlayer()
 		self.game_state = self.PLAYING
-		self.p1.print_strategy()
-		print ""
+		#self.p1.print_strategy()
+		#print ""
 		#self.p2.print_strategy()
 
 	def reset(self):

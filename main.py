@@ -66,6 +66,8 @@ if __name__ == '__main__':
 		players.append(RandomPlayer())
 
 	for generation in range(NUM_OF_GENERATION):	
+		print "start %dth generation" % (generation+1)
+
 		#1,2番目に良かったやつを記録
 		mvp = 0
 		svp = 0
@@ -75,11 +77,10 @@ if __name__ == '__main__':
 			game = Game(player)
 			p = game.experiment()
 			if mvp_p < p :
+				svp = mvp
+				svp_p = mvp_p
 				mvp_p = p
 				mvp = i
-			elif svp < p :
-				svp_p = p
-				svp = i
 			else:
 				pass
 
@@ -87,6 +88,7 @@ if __name__ == '__main__':
 		print players[mvp].print_strategy()
 		print svp_p
 		print players[svp].print_strategy()
+		print ""
 
 		players = make_new_gen(players[mvp].strategy, players[svp].strategy)
 

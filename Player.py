@@ -142,6 +142,8 @@ class CommonPlayer(Player):
 		s[3] = {} 
 		s[4] = {} 
 		s[5] = {}
+
+		"""
 		s[0][0] = {"charge":1.00, "barrier":0.00, "fire":0.00, "shoryu":0.00}
 		s[0][1] = {"charge":0.05, "barrier":0.14, "fire":0.28, "shoryu":0.52}
 		s[0][2] = {"charge":0.03, "barrier":0.42, "fire":0.33, "shoryu":0.23}
@@ -215,5 +217,5 @@ class CommonPlayer(Player):
 		s[5][3] = {"charge":0.0, "barrier":0.0, "fire":0.0, "shoryu":1.0}
 		s[5][4] = {"charge":0.0, "barrier":0.0, "fire":0.0, "shoryu":1.0}
 		s[5][5] = {"charge":0.0, "barrier":0.0, "fire":0.0, "shoryu":1.0}
-		"""
+	
 		return s
