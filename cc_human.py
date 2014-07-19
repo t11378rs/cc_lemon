@@ -13,20 +13,33 @@ BARRIER = 4
 class PvC(Game):
 
 	def __init__(self):
-		self.player_cp = 0
 		self.player_hand = UNKNOWN
 		self.p1 = CommonPlayer()
+		self.p2 = Player()
 		self.game_state = self.PLAYING
 
 	def start(self):
 		while self.game_state==self.PLAYING:
-			p2_cp = self.player_cp
+			p2_cp = self.p2.cp
+			print "charged AI:%d YOU:%d" %(self.p1.cp, self.p2.cp)
 			self.p1.choice_hand(p2_cp)
 			self.player_hand = raw_input("なにをしますか？ >")
+			if self.player_hand =="charge": self.p2.charge()
+			elif self.player_hand=="barrier": self.p2.barrier()
+			elif self.player_hand=="fire":
+				if self.p2.cp>=1:
+					self.p2.fire()
+				else:
+					self.p2.charge()
+			elif self.player_hand=="shoryuken" or self.player_hand=="shoryu":
+				if self.p2.cp>=5:
+					self.p2.shoryu()
+				else:
+					self.p2.charge()
 			print "AI :",
 			self.p1.show_hand()
 			print "YOU:",
-			print self.player_hand
+			self.p2.show_hand()
 			print ""
 			self.game_state = self.judge()
 		if(self.game_state == self.PLAYER1_WON): 
@@ -40,7 +53,8 @@ class PvC(Game):
 			return -1
 
 	def judge(self):
-		if self.player_hand=="shoryuken":
+		if self.player_hand=="shoryuken" or self.player_hand=="shoryu":
+
 			if self.p1.hand==SHORYUKEN:
 				pass
 			else:
@@ -59,7 +73,7 @@ class PvC(Game):
 				return self.PLAYER2_WON
 			else:
 				pass
-		elif self.player_hand=="shoryuken":
+		elif self.player_hand=="charge":
 			if self.p1.hand==SHORYUKEN:
 				return self.PLAYER2_WON
 			elif self.p1.hand==FIRE:
